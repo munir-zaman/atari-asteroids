@@ -1,2 +1,2 @@
-# atari-astroids
-Atari Astroids clone using raylib
+# atari-asteroids
+Atari Asteroids clone using raylib
