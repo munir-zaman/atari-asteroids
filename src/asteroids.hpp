@@ -2,6 +2,8 @@
 #include "raylib/raylib.hpp"
 #include "vector"
 
+#include "constants.hpp"
+
 enum ASTEROID_SIZE {
     ASTEROID_LARGE = 50,
     ASTEROID_SMALL = 25
@@ -23,21 +25,20 @@ typedef struct
 } Asteroid;
 
 
-std::vector<Asteroid> randomAsteroids(int number) {
+std::vector<Asteroid> random_asteroids(int number) {
 
     int asteroid_sizes[] = {ASTEROID_LARGE, ASTEROID_SMALL};
-    
     std::vector<Asteroid> asteroids;
     for (int i = 0; i < number; i++) {
         Asteroid random_asteroid = {
             .size = asteroid_sizes[rand() % 2],
             .pos = {
-                rand() % 1280,
-                rand() % 720
+                (float)(rand() % WINDOW_WIDTH),
+                (float)(rand() % WINDOW_HEIGHT)
             },
             .velocity = {
-                rand() % 100 - 50, 
-                rand() % 100 - 50
+                (float)(rand() % (ASTEROID_MAX_VELOCITY - ASTEROID_MIN_VELOCITY) + ASTEROID_MIN_VELOCITY), 
+                (float)(rand() % (ASTEROID_MAX_VELOCITY - ASTEROID_MIN_VELOCITY) + ASTEROID_MIN_VELOCITY)
             }
         };
 
