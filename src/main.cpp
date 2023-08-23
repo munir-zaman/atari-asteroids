@@ -4,6 +4,7 @@
 
 #include "asteroids.hpp"
 #include "constants.hpp"
+#include "player.hpp"
 
 
 template <typename T>
@@ -19,12 +20,15 @@ void print_vec(std::vector<Vector2> vec) {
 
 int main() {
     InitWindow(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT, WINDOW_TITLE);
-    
+
+    Player p;
     std::vector<Asteroid> asteroids = random_asteroids(10);
 
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(WINDOW_BG_COLOR);
+
+        p.draw();
 
         for (auto &a : asteroids) {
             a.draw();

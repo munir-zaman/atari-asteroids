@@ -1,4 +1,4 @@
-
+#pragma once
 #include "raylib/raylib.hpp"
 
 #define DEFAULT_WINDOW_WIDTH 1280
@@ -13,3 +13,5 @@
 
 #define ASTEROID_MAX_VELOCITY  50
 #define ASTEROID_MIN_VELOCITY -50
+
+#define PLAYER_COLOR WHITE

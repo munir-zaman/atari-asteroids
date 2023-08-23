@@ -3,6 +3,7 @@
 #include "vector"
 
 #include "constants.hpp"
+#include "coordinates.hpp"
 
 enum ASTEROID_SIZE {
     ASTEROID_LARGE = 50,
@@ -19,8 +20,9 @@ typedef struct
     Color color = ASTEROID_COLOR;
 
     void draw() {
-        pos = {pos.x + velocity.x * GetFrameTime(), pos.y + velocity.y * GetFrameTime()};
-        DrawCircleLines(pos.x, pos.y, size, color);
+        pos = add_vec(pos, mul_vec(GetFrameTime(), velocity));
+        Vector2 pixel_pos = world_to_pixel_coord(pos);
+        DrawCircleLines(pixel_pos.x, pixel_pos.y, size, color);
     }
 } Asteroid;
 
@@ -33,8 +35,8 @@ std::vector<Asteroid> random_asteroids(int number) {
         Asteroid random_asteroid = {
             .size = asteroid_sizes[rand() % 2],
             .pos = {
-                (float)(rand() % WINDOW_WIDTH),
-                (float)(rand() % WINDOW_HEIGHT)
+                (float)(rand() % WINDOW_WIDTH - (WINDOW_WIDTH / 2)),
+                (float)(rand() % WINDOW_HEIGHT - (WINDOW_HEIGHT / 2))
             },
             .velocity = {
                 (float)(rand() % (ASTEROID_MAX_VELOCITY - ASTEROID_MIN_VELOCITY) + ASTEROID_MIN_VELOCITY), 
