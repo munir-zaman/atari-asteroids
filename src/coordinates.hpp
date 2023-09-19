@@ -29,7 +29,8 @@ Vector2 world_to_pixel_coord(Vector2 world_pos) {
 }
 
 
-Vector2 add_vec(Vector2 v1, Vector2 v2) {
+Vector2 operator+(Vector2 v1, Vector2 v2) {
+
     Vector2 v_sum = {
         v1.x + v2.x,
         v1.y + v2.y
@@ -38,12 +39,15 @@ Vector2 add_vec(Vector2 v1, Vector2 v2) {
     return v_sum;
 }
 
-template <typename T>
-Vector2 mul_vec(T r, Vector2 v) {
-    Vector2 v_result = {
-        v.x * r,
-        v.y * r
-    };
+double operator*(Vector2 v1, Vector2 v2) {
+    double dot_prod = v1.x * v2.x + v1.y * v2.y;
+    return dot_prod;
+}
 
-    return v_result;
+Vector2 operator*(double k, Vector2 v1) {
+    return (Vector2){ k * v1.x, k * v1.y};
+}
+
+Vector2 polar(double r, double theta) {
+    return r * (Vector2){cos(theta), sin(theta)};
 }
